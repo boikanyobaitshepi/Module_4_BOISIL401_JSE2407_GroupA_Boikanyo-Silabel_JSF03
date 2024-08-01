@@ -4,17 +4,38 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/products">Products</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="cart">
-      <i class="fas fa-shopping-cart"></i>
-      <span class="cart-count">3</span>
+    <div class="icons">
+      <div class="icon-wrapper wishlist">
+        <i class="fas fa-heart"></i>
+        <span class="counter">{{ wishlistCount }}</span>
+      </div>
+      <div class="icon-wrapper cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="counter">{{ cartCount }}</span>
+      </div>
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  name: 'Header',
+  data() {
+    return {
+      cartCount: 0,
+      wishlistCount: 0
+    }
+  },
+  // In a real application, you'd likely use Vuex to manage these counts
+  mounted() {
+    // Simulating cart and wishlist counts
+    this.cartCount = 3;
+    this.wishlistCount = 2;
+  }
+}
+</script>
 
 <style scoped>
 .e-commerce-header {
@@ -55,16 +76,22 @@ nav ul li a:hover {
   color: #ffd700;
 }
 
-.cart {
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper {
   position: relative;
+  margin-left: 1.5rem;
   cursor: pointer;
 }
 
-.cart i {
+.icon-wrapper i {
   font-size: 1.2rem;
 }
 
-.cart-count {
+.counter {
   position: absolute;
   top: -8px;
   right: -8px;
