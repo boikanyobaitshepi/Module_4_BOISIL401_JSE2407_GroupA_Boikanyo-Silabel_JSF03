@@ -35,15 +35,22 @@ export default {
     const route = useRoute()
 
     const product = computed(() => store.state.currentProduct)
-    const loading = computed(() => store.state.loading)
+    const initialLoading = computed(() => store.state.initialLoading)
+    const newDataLoading = computed(() => store.state.newDataLoading)
 
     onMounted(() => {
+      if (store.state.products.length === 0) {
+        store.dispatch('fetchProducts')
+      }
       store.dispatch('fetchProductById', route.params.id)
     })
 
+
     return {
       product,
-      loading
+      initialLoading,
+      newDataLoading
+
     }
   }
 }

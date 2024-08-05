@@ -8,10 +8,7 @@ export default createStore({
     loading: false,
     currentProduct: null,
     filter: null,
-    sort: null,
-    initialLoading: true,
-    newDataLoading: false
-
+    sort: null
   },
   mutations: {
     setProducts(state, products) {
@@ -31,36 +28,9 @@ export default createStore({
     },
     setSort(state, sort) {
       state.sort = sort
-    },
-    setInitialLoading(state, isLoading) {
-        state.initialLoading = isLoading
-      },
-      setNewDataLoading(state, isLoading) {
-        state.newDataLoading = isLoading
-      }
+    }
   },
   actions: {
-    async fetchProducts({ commit }) {
-        commit('setInitialLoading', true)
-        try {
-          const response = await axios.get('https://fakestoreapi.com/products')
-          commit('setProducts', response.data)
-        } catch (error) {
-          console.error('Error fetching products:', error)
-        }
-        commit('setInitialLoading', false)
-      },
-      async fetchProductById({ commit }, id) {
-        commit('setNewDataLoading', true)
-        try {
-          const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
-          commit('setCurrentProduct', response.data)
-        } catch (error) {
-          console.error('Error fetching product:', error)
-        }
-        commit('setNewDataLoading', false)
-      },
-  
     async fetchProducts({ commit }) {
       commit('setLoading', true)
       try {
