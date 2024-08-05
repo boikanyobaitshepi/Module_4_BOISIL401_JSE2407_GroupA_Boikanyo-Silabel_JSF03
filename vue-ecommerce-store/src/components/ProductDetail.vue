@@ -3,14 +3,16 @@
       <h2>{{ product.title }}</h2>
       <img :src="product.image" :alt="product.title" class="product-image">
       <p>{{ product.description }}</p>
-      <p>Price: ${{ product.price }}</p>
+      <p>Price: ${{ product.price.toFixed(2) }}</p>
       <p>Category: {{ product.category }}</p>
-      <p>Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</p>
-      <router-link to="/">Back to Products</router-link>
+      <p v-if="product.rating">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</p>
+      <router-link to="/" class="back-btn">Back to Products</router-link>
     </div>
   </template>
   
   <script>
+  import axios from 'axios';
+  
   export default {
     name: 'ProductDetail',
     data() {
@@ -19,15 +21,16 @@
       }
     },
     created() {
-      // In a real app, you'd fetch the product data based on the route param
-      this.product = {
-        id: this.$route.params.id,
-        title: 'Sample Product',
-        description: 'This is a sample product description.',
-        price: 39.99,
-        category: 'Electronics',
-        image: 'https://via.placeholder.com/300',
-        rating: { rate: 4.5, count: 100 }
+      this.fetchProduct();
+    },
+    methods: {
+      async fetchProduct() {
+        try {
+          const response = await axios.get(`https://fakestoreapi.com/products/${this.$route.params.id}`);
+          this.product = response.data;
+        } catch (error) {
+          console.error('Error fetching product:', error);
+        }
       }
     }
   }
@@ -42,5 +45,16 @@
   .product-image {
     max-width: 100%;
     height: auto;
+    max-height: 400px;
+    object-fit: contain;
+  }
+  .back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
   }
   </style>
