@@ -64,10 +64,13 @@
   }
   
   .product-image-container {
-    height: 200px;
-    overflow: hidden;
-  }
-  
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
   .product-image {
     width: 100%;
     height: 100%;
@@ -89,6 +92,8 @@
     /* -webkit-line-clamp: 2; */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    /* -webkit-line-clamp: 2; */
+    height: 2.7em;
   }
   
   .product-price, .product-category {

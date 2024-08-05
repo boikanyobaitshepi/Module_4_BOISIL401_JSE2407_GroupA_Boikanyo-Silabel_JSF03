@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="loading-spinner">
       <div class="spinner"></div>
       <p class="loading-text">{{ loadingText }}</p>
@@ -52,4 +52,4 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  </style>
+  </style> -->
