@@ -5,7 +5,7 @@
       <p>Price: ${{ product.price }}</p>
       <p>Category: {{ product.category }}</p>
       <router-link :to="{ name: 'ProductView', params: { id: product.id } }">
-        View Details
+        <button class="view-details-button">View Details</button>
       </router-link>
     </div>
   </template>
@@ -34,7 +34,7 @@
 
 .product-image {
   width: 100%;
-  height: 200px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -55,5 +55,23 @@
   font-size: 16px;
   color: #4a4a4a;
   margin-top: auto;
+}
+.view-details-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.view-details-button:hover {
+  background-color: #45a049;
+  cursor: pointer;
 }
 </style>
